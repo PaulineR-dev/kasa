@@ -2,7 +2,7 @@
   position: relative;
   z-index: 5;
   width: 100%;
-  padding: 24px var(--page-gutter) 0;
+  padding: 40px var(--page-gutter) 0;
 }
 
 .desktopHeader {
