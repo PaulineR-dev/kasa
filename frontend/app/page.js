@@ -18,7 +18,7 @@ export default async function Home() {
       <section className={styles.intro} aria-labelledby="home-title">
         <h1 id="home-title">Chez vous, partout et ailleurs</h1>
         <p>
-          Kasa, vivez des séjours uniques dans des hébergements chaleureux,
+          Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux,
           sélectionnés avec soin par nos hôtes.
         </p>
       </section>
@@ -86,23 +86,27 @@ export default async function Home() {
           <section className={styles.howItWorks} aria-labelledby="how-it-works-title">
             <h2 id="how-it-works-title">Comment ça marche ?</h2>
             <p className={styles.howItWorksIntro}>
-              <span>
-                Que vous partiez pour un week-end improvisé, des vacances en famille ou un voyage professionnel,
-              </span>
-              <span>Casa vous aide à trouver un lieu qui vous ressemble.</span>
+              <span>Que vous partiez pour un week-end improvisé, des vacances en famille ou un voyage professionnel,</span>
+              <span>Kasa vous aide à trouver un lieu qui vous ressemble.</span>
             </p>
             <div className={styles.steps}>
               <article className={styles.stepCard}>
                 <h3>Recherchez</h3>
-                <p>Entrez votre destination, vos dates et laissez Casa faire le reste.</p>
+                <p>Entrez votre destination, vos dates et laissez Kasa faire le reste</p>
               </article>
               <article className={styles.stepCard}>
                 <h3>Réservez</h3>
-                <p>Profitez d’une plateforme sécurisée et de profils d’hôtes vérifiés.</p>
+                <p>
+                  Profitez d’une plateforme sécurisée
+                  <br />et de profils d’hôtes vérifiés.
+                </p>
               </article>
               <article className={styles.stepCard}>
                 <h3>Vivez l’expérience</h3>
-                <p>Installez-vous, profitez de votre séjour et sentez-vous chez vous partout.</p>
+                <p>
+                  Installez-vous, profitez de votre séjour,
+                  <br />et sentez-vous chez vous, partout.
+                </p>
               </article>
             </div>
           </section>

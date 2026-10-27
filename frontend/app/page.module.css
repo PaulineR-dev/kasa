@@ -266,42 +266,70 @@
 @media (max-width: 600px) {
   .home {
     width: min(100% - 32px, 420px);
-    padding-top: 40px;
+    padding-top: 51px;
   }
 
   .intro h1 {
     font-size: 28px;
+    line-height: 143%;
+  }
+
+  .intro p {
+    width: calc(100vw - 48px);
+    max-width: none;
   }
 
   .homeFrame {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 1115 / 458;
+    width: min(342px, 100%);
+    height: 458px;
+    margin-bottom: 51px;
   }
 
   .propertyGrid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 24px;
   }
 
   .howItWorks {
-    padding: 32px 20px;
+    margin-top: 51px;
+    padding: 40px 20px 51px;
   }
 
-  .howItWorksIntro span:first-child {
-    display: inline;
+  .howItWorks > h2 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .howItWorksIntro {
+    width: min(342px, 100%);
+    min-height: 80px;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    text-align: center;
   }
 
   .steps {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 32px;
+    grid-template-columns: minmax(0, 342px);
+    gap: 8px;
+    margin-top: 40px;
   }
 
   .stepCard {
-    min-height: 170px;
-    padding-top: 36px;
+    width: 100%;
+    height: 189px;
+    min-height: 189px;
+    max-height: 189px;
+    padding: 44px 22px 24px;
+  }
+
+  .stepCard h3 {
+    margin-bottom: 17px;
+    line-height: 1.25;
+  }
+
+  .stepCard p {
+    line-height: 1.45;
   }
 
   .propertyCard {

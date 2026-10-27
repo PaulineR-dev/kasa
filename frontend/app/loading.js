@@ -7,7 +7,7 @@ export default function Loading() {
       <section className={styles.intro}>
         <h1>Chez vous, partout et ailleurs</h1>
         <p>
-          Kasa, vivez des séjours uniques dans des hébergements chaleureux,
+          Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux,
           sélectionnés avec soin par nos hôtes.
         </p>
       </section>
