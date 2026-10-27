@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'change-me-in-prod';
+const JWT_SECRET = process.env.JWT_SECRET || 'LE-secret-mysteres';
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 
 function hashPassword(password, salt = null) {
