@@ -1,0 +1,433 @@
+.carousel {
+  position: relative;
+  width: 622px;
+  max-width: 100%;
+  height: 358px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--background);
+}
+
+.mosaic {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 303px 303px;
+  gap: 16px;
+}
+
+.mainPhoto {
+  position: relative;
+  width: 303px;
+  height: 357px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--background);
+}
+
+.mainImageButton {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.thumbnailArea {
+  width: 303px;
+  height: 358px;
+  background: var(--background);
+}
+
+.thumbnails {
+  display: grid;
+  width: 303px;
+  height: 358px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--thumbnail-rows), minmax(0, 1fr));
+  gap: 8px;
+}
+
+.thumbnail {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--background);
+  cursor: pointer;
+}
+
+.thumbnail:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.carousel:focus-visible {
+  outline: 2px solid var(--color-main-red);
+  outline-offset: 4px;
+}
+
+.thumbnail:focus-visible,
+.arrow:focus-visible,
+.mainImageButton:focus-visible {
+  outline: 3px solid var(--color-main-red);
+  outline-offset: -3px;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  animation: photoReveal 220ms ease-out both;
+}
+
+.thumbnail .image {
+  transition: transform 220ms ease-out;
+}
+
+.thumbnail:hover .image {
+  transform: scale(1.035);
+}
+
+.arrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  padding: 9px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+  color: var(--color-main-red);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.arrow:hover {
+  background: var(--color-white);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.previous {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+@keyframes photoReveal {
+  from {
+    opacity: 0.72;
+    transform: scale(1.012);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.empty {
+  width: 303px;
+  height: 357px;
+  border-radius: 10px;
+  background: var(--background);
+}
+
+.lightboxDialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: #101010;
+  color: #fff;
+}
+
+.lightboxDialog[open] {
+  animation: lightboxEnter 180ms ease-out both;
+}
+
+.lightboxDialog::backdrop {
+  background: rgb(0 0 0 / 92%);
+  animation: backdropEnter 180ms ease-out both;
+}
+
+.lightboxContent {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: minmax(0, 1fr) auto;
+  padding: 64px 72px 20px;
+}
+
+.lightboxFigure {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightboxFrame {
+  position: relative;
+  width: min(86vw, 1400px);
+  height: min(76vh, 900px);
+}
+
+.lightboxImage {
+  object-fit: contain;
+  object-position: center;
+  animation: photoReveal 220ms ease-out both;
+}
+
+.lightboxClose,
+.lightboxArrow {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 50%;
+  background: rgb(20 20 20 / 70%);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.lightboxClose {
+  top: 16px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+}
+
+.lightboxArrow {
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translateY(-50%);
+}
+
+.lightboxPrevious {
+  left: 0;
+}
+
+.lightboxNext {
+  right: 0;
+}
+
+.lightboxClose:hover,
+.lightboxArrow:hover {
+  background: rgb(70 70 70 / 90%);
+}
+
+.lightboxArrow:hover {
+  transform: translateY(-50%) scale(1.04);
+}
+
+.lightboxClose svg,
+.lightboxArrow svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.lightboxClose:focus-visible,
+.lightboxArrow:focus-visible,
+.lightboxThumbnail:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 3px;
+}
+
+.lightboxThumbnails {
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 0 0;
+}
+
+.lightboxThumbnail {
+  position: relative;
+  width: 88px;
+  height: 58px;
+  flex: 0 0 88px;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 160ms ease, border-color 160ms ease;
+}
+
+.lightboxThumbnail:hover {
+  opacity: 1;
+}
+
+.lightboxThumbnailActive {
+  border-color: var(--color-white);
+  opacity: 1;
+}
+
+@keyframes lightboxEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdropEnter {
+  from {
+    background-color: rgb(0 0 0 / 0%);
+  }
+
+  to {
+    background-color: rgb(0 0 0 / 92%);
+  }
+}
+
+@media (max-width: 980px) and (min-width: 601px) {
+  .carousel {
+    width: 100%;
+  }
+
+  .mosaic {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .mainPhoto,
+  .thumbnailArea,
+  .thumbnails {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .carousel {
+    width: calc(100% - 32px);
+    height: auto;
+    max-width: none;
+    overflow: visible;
+    border-radius: 0;
+    margin: 0 auto;
+  }
+
+  .mosaic {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mainPhoto {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 303 / 357;
+    flex: none;
+    border-radius: 0;
+  }
+
+  .thumbnailArea,
+  .thumbnails {
+    width: 100%;
+    height: auto;
+  }
+
+  .thumbnails {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: 109.1px;
+  }
+
+  .thumbnail:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .thumbnail .image,
+  .arrow,
+  .lightboxDialog[open],
+  .lightboxDialog::backdrop,
+  .lightboxClose,
+  .lightboxArrow,
+  .lightboxThumbnail {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .lightboxContent {
+    padding: 56px 8px 12px;
+  }
+
+  .lightboxFrame {
+    width: 100%;
+    height: min(70vh, 680px);
+  }
+
+  .lightboxClose {
+    top: 8px;
+    right: 8px;
+  }
+
+  .lightboxArrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightboxThumbnails {
+    justify-content: flex-start;
+  }
+
+  .lightboxThumbnail {
+    width: 68px;
+    height: 48px;
+    flex-basis: 68px;
+  }
+}

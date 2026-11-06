@@ -44,7 +44,7 @@ export default async function Home() {
             {properties.map((property) => (
               <Link
                 className={styles.propertyCard}
-                href={`/properties/${property.id}`}
+                href={`/properties/${property.slug || property.id}`}
                 key={property.id}
               >
                 <div className={styles.propertyImageWrap}>
