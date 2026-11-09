@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import { getProperties } from "@/lib/api";
+import { getProperties } from "@/lib/api/properties";
+import PropertyGrid from "@/components/PropertyGrid";
 import styles from "./page.module.css";
 
 export default async function Home() {
@@ -40,49 +40,7 @@ export default async function Home() {
         <p className={styles.message}>Aucun logement disponible pour le moment.</p>
       ) : (
         <>
-          <section className={styles.propertyGrid} aria-label="Tous les logements">
-            {properties.map((property) => (
-              <Link
-                className={styles.propertyCard}
-                href={`/properties/${property.slug || property.id}`}
-                key={property.id}
-              >
-                <div className={styles.propertyImageWrap}>
-                  <Image
-                    className={styles.propertyImage}
-                    src={property.cover}
-                    alt={property.title}
-                    fill
-                    sizes="(max-width: 600px) calc(100vw - 32px), 355px"
-                  />
-                  <span className={styles.favoriteVisual} aria-hidden="true">
-                    <Image
-                      className={styles.favoriteIcon}
-                      src="/images/heart-icon.png"
-                      alt=""
-                      width={16}
-                      height={16}
-                    />
-                    <Image
-                      className={styles.favoriteIconSelected}
-                      src="/images/heart-icon-selected.png"
-                      alt=""
-                      width={16}
-                      height={16}
-                    />
-                  </span>
-                </div>
-                <div className={styles.propertyContent}>
-                  <h2 className={styles.propertyTitle}>{property.title}</h2>
-                  <p className={styles.propertyDescription}>{property.description}</p>
-                  <p className={styles.propertyPrice}>
-                    <span>{property.price_per_night} €</span>
-                    <span className={styles.perNight}>par nuit</span>
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </section>
+          <PropertyGrid properties={properties} />
           <section className={styles.howItWorks} aria-labelledby="how-it-works-title">
             <h2 id="how-it-works-title">Comment ça marche ?</h2>
             <p className={styles.howItWorksIntro}>

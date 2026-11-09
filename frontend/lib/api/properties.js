@@ -1,4 +1,4 @@
-const API_BASE_URL = (process.env.API_URL || "http://localhost:3000").replace(/\/$/, "");
+import { API_BASE_URL } from "./client";
 
 export async function getProperties() {
   const response = await fetch(`${API_BASE_URL}/api/properties`, {

@@ -3,6 +3,19 @@ const nextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  async rewrites() {
+    const apiOrigin = (process.env.API_URL || "http://localhost:3000").replace(/\/$/, "");
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${apiOrigin}/api/:path*`,
+      },
+      {
+        source: "/auth/:path*",
+        destination: `${apiOrigin}/auth/:path*`,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

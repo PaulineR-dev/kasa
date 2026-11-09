@@ -58,6 +58,14 @@
   color: var(--color-black);
 }
 
+.cardLink {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  color: inherit;
+}
+
 .skeletonCard {
   width: 355px;
   height: 552px;
@@ -95,7 +103,9 @@
   height: 32px;
   place-items: center;
   border-radius: 5px;
+  border: 0;
   background: var(--color-light-gray);
+  cursor: pointer;
 }
 
 .favoriteIcon,
@@ -108,6 +118,18 @@
 
 .favoriteIconSelected {
   opacity: 0;
+}
+
+.favoriteActive {
+  background: var(--color-main-red);
+}
+
+.favoriteActive .favoriteIcon {
+  opacity: 0;
+}
+
+.favoriteActive .favoriteIconSelected {
+  opacity: 1;
 }
 
 .favoriteVisual:hover {

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPropertyBySlug } from "@/lib/api";
+import { getPropertyBySlug } from "@/lib/api/properties";
 import PropertyCarousel from "@/components/PropertyCarousel";
 import styles from "./property.module.css";
 

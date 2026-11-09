@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Header.module.css";
 
-export default function MobileNavigation() {
+export default function MobileNavigation({ isLoggedIn, onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -53,6 +53,11 @@ export default function MobileNavigation() {
             <Link href="/favorites" onClick={() => setMenuOpen(false)}>Favoris</Link>
           </div>
           <Link className={styles.mobileAddLink} href="/properties/new" onClick={() => setMenuOpen(false)}>Ajouter un logement</Link>
+          {isLoggedIn ? (
+            <button className={`${styles.mobileAddLink} ${styles.mobileAuthButton}`} type="button" onClick={() => { setMenuOpen(false); onLogout(); }}>Se déconnecter</button>
+          ) : (
+            <Link className={`${styles.mobileAddLink} ${styles.mobileAuthButton}`} href="/login" onClick={() => setMenuOpen(false)}>Se connecter</Link>
+          )}
         </nav>
       </div>
       <button

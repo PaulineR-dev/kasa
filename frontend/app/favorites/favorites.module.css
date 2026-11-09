@@ -1,0 +1,30 @@
+.page {
+  width: min(100% - 48px, 1120px);
+  margin: 0 auto;
+  padding: 64px 0 40px;
+}
+
+.page h1 {
+  margin-bottom: 32px;
+  color: var(--color-main-red);
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.empty {
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.empty a {
+  color: var(--color-main-red);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .page {
+    width: min(100% - 32px, 420px);
+    padding-top: 40px;
+  }
+}
