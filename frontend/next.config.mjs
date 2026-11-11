@@ -3,6 +3,10 @@ const nextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  // Keep public listing and detail pages server-rendered for crawlers and LCP.
+  cacheLife: {
+    listings: { stale: 300, revalidate: 3600, expire: 86400 },
+  },
   async rewrites() {
     const apiOrigin = (process.env.API_URL || "http://localhost:3000").replace(/\/$/, "");
     return [
@@ -17,6 +21,8 @@ const nextConfig = {
     ];
   },
   images: {
+    formats: ["image/webp"],
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: "https",

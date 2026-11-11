@@ -78,6 +78,11 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+  transition: background-color 160ms ease;
+}
+
+.submit:not(:disabled):hover {
+  background: var(--color-dark-orange);
 }
 
 .submit:disabled {

@@ -4,12 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { useFavorites } from "@/components/FavoritesContext";
 import styles from "@/app/page.module.css";
+import { getSiteUrl } from "@/lib/site";
 
 export default function PropertyGrid({ properties, label = "Tous les logements" }) {
   const { isFavorite, toggleFavorite } = useFavorites();
 
   return (
     <section className={styles.propertyGrid} aria-label={label}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            itemListElement: properties.map((property, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: `${getSiteUrl()}/properties/${encodeURIComponent(property.slug || property.id)}`,
+              name: property.title,
+            })),
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {properties.map((property) => {
         const selected = isFavorite(property.id);
         return (
@@ -21,7 +37,10 @@ export default function PropertyGrid({ properties, label = "Tous les logements" 
                   src={property.cover}
                   alt={property.title}
                   fill
-                  sizes="(max-width: 600px) calc(100vw - 32px), 355px"
+                  quality={90}
+                  priority={properties[0]?.id === property.id}
+                  fetchPriority={properties[0]?.id === property.id ? "high" : "auto"}
+                  sizes="(max-width: 386px) calc(100vw - 32px), 355px"
                 />
               </div>
               <div className={styles.propertyContent}>

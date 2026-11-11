@@ -74,10 +74,19 @@ export default function SignupPage() {
             <label htmlFor="password">Mot de passe</label>
             <input id="password" name="password" type="password" autoComplete="new-password" minLength={6} value={password} onChange={(event) => setPassword(event.target.value)} required />
           </div>
-          <label className={styles.terms}>
-            <input type="checkbox" checked={acceptedTerms} onChange={(event) => setAcceptedTerms(event.target.checked)} required />
-            <span>J&apos;accepte les <u>conditions générales d&apos;utilisation</u></span>
-          </label>
+          <div className={styles.terms}>
+            <input
+              id="acceptedTerms"
+              name="acceptedTerms"
+              type="checkbox"
+              checked={acceptedTerms}
+              onChange={(event) => setAcceptedTerms(event.target.checked)}
+              required
+            />
+            <label htmlFor="acceptedTerms">
+              J&apos;accepte les <u>conditions générales d&apos;utilisation</u>
+            </label>
+          </div>
           <button className={styles.submit} type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Inscription…" : "S'inscrire"}
           </button>

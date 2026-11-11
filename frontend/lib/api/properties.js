@@ -2,7 +2,7 @@ import { API_BASE_URL } from "./client";
 
 export async function getProperties() {
   const response = await fetch(`${API_BASE_URL}/api/properties`, {
-    cache: "no-store",
+    next: { revalidate: 3600, tags: ["properties"] },
   });
 
   if (!response.ok) {
@@ -19,7 +19,7 @@ export async function getPropertyBySlug(slug) {
   if (!summary) return null;
 
   const response = await fetch(`${API_BASE_URL}/api/properties/${encodeURIComponent(summary.id)}`, {
-    cache: "no-store",
+    next: { revalidate: 3600, tags: ["properties", `property-${summary.id}`] },
   });
 
   if (response.status === 404) return null;

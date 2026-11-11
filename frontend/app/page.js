@@ -29,7 +29,9 @@ export default async function Home() {
         alt=""
         width={1115}
         height={458}
+        sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1160px) calc(100vw - 48px), 1115px"
         priority
+        fetchPriority="high"
       />
 
       {hasError ? (

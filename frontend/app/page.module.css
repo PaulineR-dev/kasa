@@ -30,6 +30,7 @@
   width: min(100%, 1115px, calc(100vh * 2.4345));
   max-width: 100%;
   height: auto;
+  aspect-ratio: 1115 / 458;
   margin: 0 auto 40px;
   border-radius: 20px;
   object-fit: cover;

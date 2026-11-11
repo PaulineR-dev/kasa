@@ -17,7 +17,9 @@ export default function Loading() {
         alt=""
         width={1115}
         height={458}
+        sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1160px) calc(100vw - 48px), 1115px"
         priority
+        fetchPriority="high"
       />
       <div className={styles.propertyGrid}>
         {Array.from({ length: 6 }, (_, index) => (

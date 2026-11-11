@@ -73,10 +73,13 @@
   align-items: center;
   gap: 10px;
   color: var(--color-dark-gray);
-  cursor: pointer;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
+}
+
+.terms label {
+  cursor: pointer;
 }
 
 .terms input {
@@ -103,6 +106,11 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+  transition: background-color 160ms ease;
+}
+
+.submit:not(:disabled):hover {
+  background: var(--color-dark-orange);
 }
 
 .submit:disabled {

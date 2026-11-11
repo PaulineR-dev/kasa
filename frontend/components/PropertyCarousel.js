@@ -86,8 +86,9 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
                 src={images[activeIndex]}
                 alt={`${title} — photo ${activeIndex + 1}`}
                 fill
+                quality={90}
                 priority
-                sizes="(max-width: 600px) 100vw, 303px"
+                sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 980px) calc(50vw - 30px), 303px"
               />
             </button>
             {hasNavigation && (
@@ -119,7 +120,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
                     aria-label={`Afficher la photo ${index + 1}`}
                     onClick={() => selectImage(index)}
                   >
-                    <Image className={styles.image} src={src} alt="" fill sizes="(max-width: 600px) 28vw, 146px" />
+                    <Image className={styles.image} src={src} alt="" fill quality={90} sizes="(max-width: 600px) calc((100vw - 56px) / 4), (max-width: 980px) calc(25vw - 19px), 146px" />
                   </button>
                 ))}
               </div>
@@ -161,6 +162,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
                 src={images[activeIndex]}
                 alt={`${title} — photo ${activeIndex + 1}`}
                 fill
+                quality={90}
                 sizes="90vw"
               />
             </div>
@@ -181,7 +183,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
                   aria-current={activeIndex === index ? "true" : undefined}
                   onClick={() => selectImage(index)}
                 >
-                  <Image src={src} alt="" fill sizes="88px" />
+                  <Image src={src} alt="" fill quality={90} sizes="88px" />
                 </button>
               ))}
             </div>

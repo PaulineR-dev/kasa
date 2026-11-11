@@ -26,6 +26,12 @@
   top: 18.8px;
 }
 
+.home:hover,
+.about:hover {
+  color: var(--color-main-red);
+  font-weight: 700;
+}
+
 .home {
   left: 100px;
 }
@@ -82,6 +88,11 @@
   color: var(--color-white);
   cursor: pointer;
   font: 500 14px/18px var(--font-inter), Arial, Helvetica, sans-serif;
+  transition: background-color 160ms ease;
+}
+
+.authButton:hover {
+  background: var(--color-dark-orange);
 }
 
 .logoutButton {
@@ -315,6 +326,11 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 18px;
+    transition: background-color 160ms ease;
+  }
+
+  .mobileAddLink:hover {
+    background: var(--color-dark-orange);
   }
 
   .mobileAuthButton {

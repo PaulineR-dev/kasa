@@ -3,16 +3,23 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPropertyBySlug } from "@/lib/api/properties";
 import PropertyCarousel from "@/components/PropertyCarousel";
+import PropertyAccordion from "./PropertyAccordion";
+import { getSiteUrl } from "@/lib/site";
 import styles from "./property.module.css";
 
 export const instant = false;
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const property = await getPropertyBySlug(slug).catch(() => null);
+  if (!property) return { title: "Logement introuvable | Kasa", robots: { index: false } };
 
-function ChipList({ items = [] }) {
-  return (
-    <ul className={styles.chips}>
-      {items.map((item) => <li key={item}>{item}</li>)}
-    </ul>
-  );
+  const canonical = `/properties/${encodeURIComponent(property.slug || property.id)}`;
+  return {
+    title: `${property.title} | Kasa`,
+    description: String(property.description || "").slice(0, 160),
+    alternates: { canonical },
+    openGraph: { title: `${property.title} | Kasa`, description: property.description, url: canonical, images: property.cover ? [property.cover] : [] },
+  };
 }
 
 export default async function PropertyPage({ params }) {
@@ -34,9 +41,21 @@ export default async function PropertyPage({ params }) {
       : [];
   const rating = Number(property.rating_avg ?? property.rating ?? 0);
   const hostName = property.host?.name || "Hôte Kasa";
+  const propertyUrl = `${getSiteUrl()}/properties/${encodeURIComponent(property.slug || property.id)}`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    name: property.title,
+    description: property.description,
+    url: propertyUrl,
+    image: pictures,
+    address: { "@type": "PostalAddress", addressLocality: property.location, addressCountry: "FR" },
+    ...(rating > 0 ? { aggregateRating: { "@type": "AggregateRating", ratingValue: rating, bestRating: 5, ratingCount: Number(property.ratings_count || 1) } } : {}),
+  };
 
   return (
     <main className={`${styles.page} property-detail-page`}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <Link href="/" className={styles.back}>
         <Image src="/images/arrow.png" alt="" width={8} height={6} />
         Retour aux annonces
@@ -66,18 +85,18 @@ export default async function PropertyPage({ params }) {
               <span>{rating}</span>
             </div>
           </div>
-          <a
+          <Link
             className={styles.contact}
-            href={`mailto:contact@kasa.fr?subject=${encodeURIComponent(`À propos de ${property.title}`)}`}
+            href={`/messages?property=${encodeURIComponent(property.slug || property.id)}`}
           >
             Contacter l’hôte
-          </a>
-          <a
+          </Link>
+          <Link
             className={styles.contact}
-            href={`mailto:contact@kasa.fr?subject=${encodeURIComponent(`Message concernant ${property.title}`)}`}
+            href={`/messages?property=${encodeURIComponent(property.slug || property.id)}`}
           >
             Envoyer un message
-          </a>
+          </Link>
         </aside>
       </div>
 
@@ -88,14 +107,8 @@ export default async function PropertyPage({ params }) {
           {property.location}
         </p>
         <p className={styles.description}>{property.description}</p>
-        <div className={styles.group}>
-          <h2>Équipements</h2>
-          <ChipList items={property.equipments} />
-        </div>
-        <div className={`${styles.group} ${styles.categoryGroup}`}>
-          <h2>Catégorie</h2>
-          <ChipList items={property.tags} />
-        </div>
+        <PropertyAccordion title="Équipements" items={property.equipments} />
+        <PropertyAccordion title="Catégorie" items={property.tags} />
       </section>
     </main>
   );
