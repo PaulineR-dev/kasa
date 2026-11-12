@@ -20,6 +20,7 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
+/** Assemble le document HTML et les composants communs à toutes les pages. */
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">

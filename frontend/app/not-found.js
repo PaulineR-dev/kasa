@@ -9,6 +9,7 @@ const interBlack = Inter({
   display: "swap",
 });
 
+/** Affiche la page 404 et propose des liens de retour vers l'accueil. */
 export default function NotFound() {
   return (
     <main className={`${styles.page} ${interBlack.variable}`}>

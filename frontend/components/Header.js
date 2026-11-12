@@ -6,6 +6,7 @@ import Link from "next/link";
 import MobileNavigation from "@/components/MobileNavigation";
 import styles from "./Header.module.css";
 
+/** Efface la session locale puis redirige l'utilisateur vers l'accueil. */
 export function logout() {
   window.localStorage.removeItem("kasa_token");
   window.localStorage.removeItem("kasa_user");
@@ -13,12 +14,14 @@ export function logout() {
   window.location.assign("/");
 }
 
+/** Affiche la navigation principale et la synchronise avec l'état de connexion. */
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const syncAuth = () => setIsLoggedIn(Boolean(window.localStorage.getItem("kasa_token")));
     syncAuth();
+    // storage couvre les autres onglets; l'événement personnalisé couvre les changements dans cet onglet.
     window.addEventListener("storage", syncAuth);
     window.addEventListener("kasa-auth-changed", syncAuth);
     return () => {

@@ -3,6 +3,7 @@ import { getProperties } from "@/lib/api/properties";
 import PropertyGrid from "@/components/PropertyGrid";
 import styles from "./page.module.css";
 
+/** Rend la page d'accueil et récupère côté serveur la liste des logements. */
 export default async function Home() {
   let properties = [];
   let hasError = false;

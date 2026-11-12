@@ -5,6 +5,10 @@ import Image from "next/image";
 import { carouselReducer, getCarouselDirectionFromKey, getSelectableThumbnails, hasCarouselNavigation, initialCarouselState, normalizeCarouselImages } from "./carouselUtils.mjs";
 import styles from "./PropertyCarousel.module.css";
 
+/**
+ * Affiche la galerie d'un logement avec navigation, miniatures et visionneuse modale.
+ * @param {{pictures?: Array<string>, cover?: string, title: string}} props Photos et titre du logement.
+ */
 export default function PropertyCarousel({ pictures = [], cover, title }) {
   const images = normalizeCarouselImages(pictures, cover);
   const [carouselState, dispatch] = useReducer(carouselReducer, initialCarouselState);
@@ -19,6 +23,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
+    // Synchroniser l'état React avec l'API native du dialogue modal et déplacer le focus à son ouverture.
     if (lightboxOpen && !dialog.open) {
       dialog.showModal();
       closeButtonRef.current?.focus();
@@ -34,6 +39,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
       if (event.altKey || event.ctrlKey || event.metaKey || event.defaultPrevented) return;
 
       const target = event.target;
+      // Les flèches restent disponibles pour saisir du texte dans les champs et éditeurs.
       if (target instanceof HTMLElement && (target.isContentEditable || target.closest("input, textarea, select, [role='textbox']"))) {
         return;
       }

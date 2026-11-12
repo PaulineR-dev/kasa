@@ -1,4 +1,8 @@
-/** @type {import('next').NextConfig} */
+/**
+ * Configuration Next.js du front : cache des pages publiques, réécritures API
+ * vers le serveur et formats optimisés pour les images distantes.
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   /* config options here */
   cacheComponents: true,

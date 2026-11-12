@@ -1,6 +1,11 @@
 import { getProperties } from "@/lib/api/properties";
 import { getSiteUrl } from "@/lib/site";
 
+/**
+ * Génère le sitemap XML avec la page d'accueil et les pages des logements.
+ * Si l'API est indisponible, le sitemap contient tout de même l'accueil.
+ * @returns {Promise<Array<{url: string, changeFrequency: string, priority: number, lastModified?: Date}>>}
+ */
 // Next.js transforme cette fonction en fichier XML accessible à /sitemap.xml.
 export default async function sitemap() {
   // Le domaine vient de SITE_URL (avec une valeur locale par défaut).

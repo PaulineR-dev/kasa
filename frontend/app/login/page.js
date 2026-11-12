@@ -5,6 +5,7 @@ import Link from "next/link";
 import { loginUser } from "@/lib/api/auth";
 import styles from "./login.module.css";
 
+/** Affiche le formulaire de connexion et gère son envoi à l'API. */
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,11 +20,13 @@ export default function LoginPage() {
     try {
       const { response, result } = await loginUser({ email, password });
 
+      // Distinguer les identifiants invalides des autres erreurs renvoyées par l'API.
       if (!response.ok) {
         setError(response.status === 401 ? "Adresse email ou mot de passe incorrect." : result.error || "La connexion a échoué. Veuillez réessayer.");
         return;
       }
 
+      // La session locale permet à l'en-tête et aux favoris de reconnaître l'utilisateur.
       if (result.token) window.localStorage.setItem("kasa_token", result.token);
       if (result.user) window.localStorage.setItem("kasa_user", JSON.stringify(result.user));
       window.dispatchEvent(new Event("kasa-auth-changed"));

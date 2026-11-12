@@ -8,6 +8,11 @@ import { getSiteUrl } from "@/lib/site";
 import styles from "./property.module.css";
 
 export const instant = false;
+/**
+ * Prépare les métadonnées SEO de la fiche logement à partir de ses données.
+ * @param {{params: Promise<{slug: string}>}} input Paramètres de la route dynamique.
+ * @returns {Promise<Object>} Métadonnées de la page, ou titre non indexable si logement absent.
+ */
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const property = await getPropertyBySlug(slug).catch(() => null);
@@ -22,6 +27,11 @@ export async function generateMetadata({ params }) {
   };
 }
 
+/**
+ * Récupère les données du logement et rend sa fiche avec données structurées.
+ * @param {{params: Promise<{slug: string}>}} input Paramètres de la route dynamique.
+ * @returns {Promise<import('react').ReactElement>} Fiche logement ou page 404.
+ */
 export default async function PropertyPage({ params }) {
   const { slug } = await params;
   let property;

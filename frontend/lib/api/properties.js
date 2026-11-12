@@ -1,5 +1,10 @@
 import { API_BASE_URL } from "./client";
 
+/**
+ * Récupère la liste des logements; la réponse est mise en cache une heure.
+ * @returns {Promise<Array<Object>>} Logements disponibles.
+ * @throws {Error} Si l'API renvoie un statut HTTP d'échec.
+ */
 export async function getProperties() {
   const response = await fetch(`${API_BASE_URL}/api/properties`, {
     next: { revalidate: 3600, tags: ["properties"] },
@@ -12,8 +17,15 @@ export async function getProperties() {
   return response.json();
 }
 
+/**
+ * Recherche un logement par slug ou identifiant, puis récupère ses détails.
+ * @param {string} slug Slug public ou identifiant du logement.
+ * @returns {Promise<Object|null>} Logement détaillé, ou null s'il est introuvable.
+ * @throws {Error} Si la requête API échoue pour une raison autre qu'une absence (404).
+ */
 export async function getPropertyBySlug(slug) {
   const properties = await getProperties();
+  // L'API détail attend l'identifiant; la liste sert à résoudre le slug public vers cet identifiant.
   const summary = properties.find((property) => property.slug === slug || property.id === slug);
 
   if (!summary) return null;

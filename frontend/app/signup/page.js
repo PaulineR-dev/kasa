@@ -5,6 +5,7 @@ import Link from "next/link";
 import { registerUser } from "@/lib/api/auth";
 import styles from "./signup.module.css";
 
+/** Affiche le formulaire d'inscription et gère la création du compte. */
 export default function SignupPage() {
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -28,6 +29,7 @@ export default function SignupPage() {
       });
 
       if (!response.ok) {
+        // Transformer les erreurs API courantes en messages compréhensibles dans le formulaire.
         setError(response.status === 409
           ? "Cette adresse e-mail est déjà utilisée."
           : result.error === "password must be at least 6 characters"
@@ -36,6 +38,7 @@ export default function SignupPage() {
         return;
       }
 
+      // La session locale met à jour l'état connecté dans l'en-tête et le contexte des favoris.
       if (result.token) window.localStorage.setItem("kasa_token", result.token);
       if (result.user) window.localStorage.setItem("kasa_user", JSON.stringify(result.user));
       window.dispatchEvent(new Event("kasa-auth-changed"));

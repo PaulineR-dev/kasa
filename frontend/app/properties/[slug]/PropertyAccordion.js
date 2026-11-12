@@ -4,6 +4,7 @@ import { useId, useState } from "react";
 import styles from "./PropertyAccordion.module.css";
 import propertyStyles from "./property.module.css";
 
+/** Affiche une liste repliable d'équipements ou de catégories d'un logement. */
 export default function PropertyAccordion({ title, items = [] }) {
   const [isOpen, setIsOpen] = useState(true);
   const panelId = useId();

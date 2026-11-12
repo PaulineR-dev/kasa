@@ -7,6 +7,7 @@ export const metadata = {
   alternates: { canonical: "/about" },
 };
 
+/** Affiche la page de présentation de Kasa et de sa mission. */
 export default function AboutPage() {
   return (
     <main className={styles.page}>

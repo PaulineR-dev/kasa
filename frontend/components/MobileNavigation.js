@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Header.module.css";
 
+/** Affiche le menu mobile et transmet l'action de déconnexion au parent. */
 export default function MobileNavigation({ isLoggedIn, onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
 

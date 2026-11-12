@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kasa — application front-end
 
-## Getting Started
+Kasa est une plateforme de location de logements développée avec Next.js. Le front-end permet de consulter les annonces et leurs fiches détaillées, de parcourir leurs photos, de gérer des favoris dans le navigateur, et de créer un compte ou de se connecter. Il comprend aussi des pages À propos, de messagerie provisoire et une page 404 personnalisée.
 
-First, run the development server:
+Le dépôt GitHub du projet est [PaulineR-dev/kasa](https://github.com/PaulineR-dev/kasa).
+
+## Prérequis
+
+- Node.js compatible avec Next.js 16.
+- npm.
+- Le serveur API Kasa démarré et accessible pour charger les logements et utiliser l'inscription et la connexion.
+- Un accès réseau à Google Fonts lors de la compilation, car Inter est chargée avec `next/font/google`.
+
+## Installation
+
+Depuis la racine du dépôt, installer les dépendances du front-end :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd frontend
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Le front-end peut lire les variables d'environnement suivantes. Elles peuvent être définies dans l'environnement du terminal ou dans un fichier local `frontend/.env.local`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Utilisation | Valeur locale par défaut |
+| --- | --- | --- |
+| `API_URL` | Adresse de base du serveur API utilisée par les appels serveur et les réécritures Next.js. | `http://localhost:3000` |
+| `SITE_URL` | URL publique du site utilisée pour les URL canoniques, le sitemap, `robots.txt` et les données structurées. | `http://localhost:3001` |
 
-## Learn More
+Pour le développement local, démarrer l'API sur le port 3000 et le front sur le port 3001, ou définir les variables pour les ports utilisés. En production, définir `SITE_URL` avec le domaine public réel et `API_URL` avec l'adresse joignable du serveur API.
 
-To learn more about Next.js, take a look at the following resources:
+## Lancement du projet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Depuis `frontend/`, lancer le serveur de développement :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run dev -- --port 3001
+```
 
-## Deploy on Vercel
+Ouvrir ensuite [http://localhost:3001](http://localhost:3001).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pour créer et lancer une version de production :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm run start -- --port 3001
+```
+
+## Vérifications
+
+Lancer les tests unitaires du carrousel et des favoris :
+
+```bash
+npm test
+```
+
+Vérifier le code avec ESLint :
+
+```bash
+npm run lint
+```
+
+## Pages et fonctionnalités principales
+
+- `/` : accueil et liste de logements.
+- `/properties/[slug]` : fiche détaillée, galerie photo et accordéons d'équipements et de catégories.
+- `/about` : présentation de Kasa.
+- `/login` et `/signup` : connexion et création de compte.
+- `/favorites` : favoris conservés dans le stockage local du navigateur.
+- `/messages` : écran provisoire de la messagerie.
+- Les routes spéciales `/sitemap.xml` et `/robots.txt` aident les moteurs de recherche à découvrir les pages publiques.
+
+Les pages d'accueil et de logement récupèrent leur contenu côté serveur. Les composants interactifs, comme le carrousel et les boutons de favoris, utilisent React côté navigateur. Les appels vers `/api` et `/auth` sont transmis au serveur API par les réécritures définies dans `next.config.mjs`.

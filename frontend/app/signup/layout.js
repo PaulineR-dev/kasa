@@ -5,6 +5,7 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
+/** Applique les métadonnées spécifiques aux pages d'inscription. */
 export default function SignupLayout({ children }) {
   return children;
 }

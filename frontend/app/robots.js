@@ -1,5 +1,9 @@
 import { getSiteUrl } from "@/lib/site";
 
+/**
+ * Configure /robots.txt pour autoriser l'exploration et annoncer le sitemap.
+ * @returns {{rules: {userAgent: string, allow: string}, sitemap: string}} Consignes des robots.
+ */
 // Next.js génère /robots.txt à partir de cet objet.
 export default function robots() {
   const baseUrl = getSiteUrl();

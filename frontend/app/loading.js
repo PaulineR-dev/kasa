@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 
+/** Affiche l'aperçu de chargement de la page pendant la récupération des logements. */
 export default function Loading() {
   return (
     <main className={styles.home} aria-busy="true" aria-label="Chargement des logements">
