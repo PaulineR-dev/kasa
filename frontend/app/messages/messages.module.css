@@ -1,0 +1,235 @@
+.backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  background: rgb(13 13 13 / 42%);
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+.overlay {
+  display: grid;
+  width: 1059px;
+  height: 814px;
+  grid-template-columns: 376px 683px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 12px 48px rgb(0 0 0 / 18%);
+}
+
+.sidebar {
+  min-width: 0;
+  padding: 27px 16px;
+  border: 1px solid #f5f5f5;
+  background: #ffffff;
+}
+
+.backButton {
+  display: inline-flex;
+  width: 93px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 0;
+  border-radius: 10px;
+  background: #f5f5f5;
+  color: #565656;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.backArrow {
+  width: 8px;
+  height: 5.82px;
+  flex: 0 0 8px;
+  object-fit: contain;
+  filter: brightness(0);
+}
+
+.title {
+  margin: 23px 0 0;
+  color: #000000;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.chatColumn {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.chatPanel {
+  width: 683px;
+  height: 677px;
+  flex: 0 0 677px;
+  background: #fffbf9;
+}
+
+.composerWrap {
+  display: flex;
+  width: 683px;
+  height: 137px;
+  flex: 0 0 137px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f5f5f5;
+  background: #ffffff;
+}
+
+.composer {
+  position: relative;
+  width: min(623px, calc(100% - 32px));
+  height: 95px;
+  border: 1px solid #f5f5f5;
+  border-radius: 10px;
+}
+
+.composer textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  padding: 16px 58px 16px 16px;
+  border: 0;
+  border-radius: inherit;
+  outline: none;
+  color: #565656;
+  font: 400 12px/1.5 var(--font-inter), Arial, sans-serif;
+}
+
+.composer textarea::placeholder {
+  color: #565656;
+  opacity: 1;
+}
+
+.sendButton {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 0;
+  border-radius: 5px;
+  background: #99331a;
+  cursor: pointer;
+}
+
+.sendButton img {
+  filter: brightness(0) invert(1);
+  transform: rotate(90deg);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.backButton:focus-visible,
+.sendButton:focus-visible {
+  outline: 3px solid #99331a;
+  outline-offset: 2px;
+}
+
+@media (max-width: 1058px) and (min-width: 701px) {
+  .overlay {
+    width: 100vw;
+    grid-template-columns: minmax(300px, 35.5%) minmax(0, 1fr);
+  }
+
+  .chatPanel,
+  .composerWrap {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .backdrop {
+    position: absolute;
+    z-index: 4;
+    top: 85.36px;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    display: block;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .overlay {
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .sidebar {
+    height: 68px;
+    flex: 0 0 68px;
+    padding: 16px 8px;
+    border: 0;
+  }
+
+  .backButton {
+    width: 93px;
+    height: 36px;
+  }
+
+  .title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .chatColumn {
+    width: min(100%, 390px);
+    align-self: center;
+  }
+
+  .chatPanel {
+    width: 100%;
+    height: 420px;
+    flex: 0 0 420px;
+    background: #fffbf9;
+  }
+
+  .composerWrap {
+    width: 100%;
+    height: 86px;
+    flex: 0 0 86px;
+    padding: 0;
+  }
+
+  .composer {
+    width: 330px;
+    max-width: calc(100% - 32px);
+    height: 44px;
+  }
+
+  .composer textarea {
+    padding: 12px 50px 8px 15px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .sendButton {
+    right: 5px;
+    bottom: 5px;
+  }
+}

@@ -11,11 +11,12 @@ import { getSiteUrl } from "@/lib/site";
  * Le JSON-LD `ItemList` décrit aussi cette liste aux moteurs de recherche : chaque
  * logement y figure comme un élément ordonné avec son nom et l'URL de sa fiche.
  */
-export default function PropertyGrid({ properties, label = "Tous les logements" }) {
+export default function PropertyGrid({ properties, label = "Tous les logements", variant = "default" }) {
   const { isFavorite, toggleFavorite } = useFavorites();
+  const isFavoritesPage = variant === "favorites";
 
   return (
-    <section className={styles.propertyGrid} aria-label={label}>
+    <section className={`${styles.propertyGrid} ${isFavoritesPage ? "favorites-property-grid" : ""}`} aria-label={label}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -34,24 +35,29 @@ export default function PropertyGrid({ properties, label = "Tous les logements" 
       {properties.map((property) => {
         const selected = isFavorite(property.id);
         return (
-          <article className={styles.propertyCard} key={property.id}>
+          <article className={`${styles.propertyCard} ${isFavoritesPage ? "favorites-property-card" : ""}`} key={property.id}>
             <Link className={styles.cardLink} href={`/properties/${property.slug || property.id}`}>
-              <div className={styles.propertyImageWrap}>
+              <div
+                className={`${styles.propertyImageWrap} ${isFavoritesPage ? "favorites-property-image-wrap" : ""}`}
+              >
                 <Image
                   className={styles.propertyImage}
                   src={property.cover}
                   alt={property.title}
                   fill
-                  quality={90}
+                  unoptimized
+                  quality={100}
                   priority={properties[0]?.id === property.id}
                   fetchPriority={properties[0]?.id === property.id ? "high" : "auto"}
                   sizes="(max-width: 386px) calc(100vw - 32px), 355px"
                 />
               </div>
-              <div className={styles.propertyContent}>
+              <div className={`${styles.propertyContent} ${isFavoritesPage ? "favorites-property-content" : ""}`}>
                 <h2 className={styles.propertyTitle}>{property.title}</h2>
-                <p className={styles.propertyDescription}>{property.description}</p>
-                <p className={styles.propertyPrice}>
+                <p className={isFavoritesPage ? "favorites-property-location" : styles.propertyDescription}>
+                  {isFavoritesPage ? property.location : property.description}
+                </p>
+                <p className={`${styles.propertyPrice} ${isFavoritesPage ? "favorites-property-price" : ""}`}>
                   <span>{property.price_per_night} €</span>
                   <span className={styles.perNight}>par nuit</span>
                 </p>

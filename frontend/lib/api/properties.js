@@ -1,4 +1,7 @@
-import { API_BASE_URL } from "./client";
+// Le navigateur passe par les réécritures Next.js; le serveur appelle l'API directement.
+const API_BASE_URL = typeof window === "undefined"
+  ? (process.env.API_URL || "http://localhost:3000").replace(/\/$/, "")
+  : "";
 
 /**
  * Récupère la liste des logements; la réponse est mise en cache une heure.

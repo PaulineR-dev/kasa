@@ -1,18 +1,77 @@
 .page {
   width: min(100% - 48px, 1120px);
   margin: 0 auto;
-  padding: 64px 0 40px;
+  padding: 70.86px 0 56px;
 }
 
-.page h1 {
-  margin-bottom: 32px;
+.introduction {
+  text-align: center;
+}
+
+.introduction h1 {
   color: var(--color-main-red);
   font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.introduction p {
+  margin-top: 8px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 143%;
+}
+
+:global(.favorites-property-grid) {
+  grid-template-columns: repeat(3, 355px);
+  gap: 24px;
+  margin: 70.86px auto 0;
+}
+
+:global(.favorites-property-card) {
+  width: 355px;
+  max-width: 355px;
+  height: 552px;
+  max-height: 552px;
+}
+
+:global(.favorites-property-image-wrap) {
+  width: 100%;
+  max-width: 355px;
+  height: 376px;
+  max-height: 376px;
+  flex: 0 0 376px;
+  border-radius: 10px 10px 0 0;
+}
+
+:global(.favorites-property-content) {
+  width: 100%;
+  max-width: 355px;
+  height: 176px;
+  max-height: 176px;
+  flex: 0 0 176px;
+  padding: 16px 24px 24px;
+  border-radius: 0 0 10px 10px;
+}
+
+:global(.favorites-property-location) {
+  margin-top: 8px;
+  color: var(--color-dark-gray);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+:global(.favorites-property-price) {
+  margin-top: auto;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .empty {
+  margin-top: 70.86px;
   padding: 48px 16px;
+  color: var(--color-dark-gray);
   text-align: center;
 }
 
@@ -22,9 +81,41 @@
   text-underline-offset: 2px;
 }
 
+@media (max-width: 1160px) {
+  :global(.favorites-property-grid) {
+    grid-template-columns: repeat(2, minmax(0, 355px));
+  }
+}
+
+@media (max-width: 781px) {
+  :global(.favorites-property-grid) {
+    grid-template-columns: minmax(0, 355px);
+  }
+}
+
 @media (max-width: 600px) {
   .page {
     width: min(100% - 32px, 420px);
     padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .introduction h1 {
+    font-size: 32px;
+  }
+
+  .introduction p {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  :global(.favorites-property-grid) {
+    grid-template-columns: minmax(0, 355px);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .empty {
+    margin-top: 40px;
   }
 }

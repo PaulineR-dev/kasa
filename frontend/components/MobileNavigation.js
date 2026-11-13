@@ -47,13 +47,13 @@ export default function MobileNavigation({ isLoggedIn, onLogout }) {
             <span className={styles.menuSeparator} aria-hidden="true" />
           </div>
           <div className={styles.mobileMenuItem}>
-            <Link href="/messages" onClick={() => setMenuOpen(false)}>Messagerie</Link>
+            <Link href={isLoggedIn ? "/messages" : "/login"} onClick={() => setMenuOpen(false)}>Messagerie</Link>
             <span className={styles.menuSeparator} aria-hidden="true" />
           </div>
           <div className={styles.mobileMenuItem}>
-            <Link href="/favorites" onClick={() => setMenuOpen(false)}>Favoris</Link>
+            <Link href={isLoggedIn ? "/favorites" : "/login"} onClick={() => setMenuOpen(false)}>Favoris</Link>
           </div>
-          <Link className={styles.mobileAddLink} href="/properties/new" onClick={() => setMenuOpen(false)}>Ajouter un logement</Link>
+          <Link className={styles.mobileAddLink} href={isLoggedIn ? "/properties/new" : "/login"} onClick={() => setMenuOpen(false)}>Ajouter un logement</Link>
           {isLoggedIn ? (
             <button className={`${styles.mobileAddLink} ${styles.mobileAuthButton}`} type="button" onClick={() => { setMenuOpen(false); onLogout(); }}>Se déconnecter</button>
           ) : (
