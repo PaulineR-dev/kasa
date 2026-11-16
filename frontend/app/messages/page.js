@@ -5,7 +5,10 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./messages.module.css";
 
-/** Écran de démonstration de la messagerie, sans envoi ni stockage de messages. */
+/**
+ * Affiche l'écran de démonstration de la messagerie, sans envoi ni stockage de messages.
+ * @returns {import('react').ReactElement} Interface de messagerie et de rédaction provisoire.
+ */
 export default function MessagesPage() {
   const router = useRouter();
   const closeOverlay = useCallback(() => router.back(), [router]);

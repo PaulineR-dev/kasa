@@ -15,6 +15,7 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  /** Crée un compte, affiche les erreurs et enregistre la session en cas de succès. */
   async function handleSubmit(event) {
     event.preventDefault();
     setError("");

@@ -10,6 +10,8 @@ import { getSiteUrl } from "@/lib/site";
  * Affiche les logements sous forme de grille avec leurs liens et boutons favoris.
  * Le JSON-LD `ItemList` décrit aussi cette liste aux moteurs de recherche : chaque
  * logement y figure comme un élément ordonné avec son nom et l'URL de sa fiche.
+ * @param {{properties: Array<Object>, label?: string, variant?: string}} props Logements et options de présentation.
+ * @returns {import('react').ReactElement} Grille de logements avec les commandes de favoris.
  */
 export default function PropertyGrid({ properties, label = "Tous les logements", variant = "default" }) {
   const { isFavorite, toggleFavorite } = useFavorites();

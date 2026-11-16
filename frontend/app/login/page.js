@@ -12,6 +12,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  /** Envoie les identifiants, affiche les erreurs et enregistre la session en cas de succès. */
   async function handleSubmit(event) {
     event.preventDefault();
     setError("");

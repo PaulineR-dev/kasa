@@ -5,7 +5,10 @@ import { useFavorites } from "@/components/FavoritesContext";
 import PropertyGrid from "@/components/PropertyGrid";
 import styles from "./favorites.module.css";
 
-/** Affiche les logements favoris après l'initialisation du stockage navigateur. */
+/**
+ * Affiche les logements favoris après l'initialisation du stockage navigateur.
+ * @returns {import('react').ReactElement} Page des favoris ou message si la liste est vide.
+ */
 export default function FavoritesPage() {
   const { favorites, isReady } = useFavorites();
 
