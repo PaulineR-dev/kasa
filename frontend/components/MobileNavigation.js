@@ -13,7 +13,7 @@ export default function MobileNavigation({ isLoggedIn, onLogout }) {
     <div className={`${styles.mobileNavigation} ${menuOpen ? styles.menuOpen : ""}`}>
       <div className={styles.mobileHeader}>
         <Link href="/" aria-label="Kasa, accueil">
-          <Image src="/images/kasa.png" alt="Kasa" width={46} height={53} priority />
+          <Image src="/images/kasa.png" alt="Kasa" width={46} height={53} quality={100} priority />
         </Link>
         <button
           className={styles.menuToggle}
@@ -24,7 +24,7 @@ export default function MobileNavigation({ isLoggedIn, onLogout }) {
           tabIndex={menuOpen ? -1 : 0}
           onClick={() => setMenuOpen(true)}
         >
-          <Image src="/images/mobile-navigation.png" alt="" width={46} height={46} priority />
+          <Image src="/images/mobile-navigation.png" alt="" width={46} height={46} quality={100} priority />
         </button>
       </div>
 
@@ -34,7 +34,7 @@ export default function MobileNavigation({ isLoggedIn, onLogout }) {
       >
         <div className={styles.mobileMenuTop}>
           <Link href="/" aria-label="Kasa, accueil" onClick={() => setMenuOpen(false)}>
-            <Image src="/images/kasa.png" alt="Kasa" width={46} height={53} priority />
+            <Image src="/images/kasa.png" alt="Kasa" width={46} height={53} quality={100} priority />
           </Link>
         </div>
         <nav className={styles.mobileMenuLinks} aria-label="Navigation mobile">
@@ -70,7 +70,7 @@ export default function MobileNavigation({ isLoggedIn, onLogout }) {
         tabIndex={menuOpen ? 0 : -1}
         onClick={() => setMenuOpen(false)}
       >
-        <Image src="/images/croix.png" alt="" width={26} height={26} />
+        <Image src="/images/croix.png" alt="" width={26} height={26} quality={100} />
       </button>
     </div>
   );

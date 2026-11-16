@@ -47,6 +47,7 @@ export default function PropertyGrid({ properties, label = "Tous les logements",
                   src={property.cover}
                   alt={property.title}
                   fill
+                  unoptimized
                   quality={100}
                   priority={properties[0]?.id === property.id}
                   fetchPriority={properties[0]?.id === property.id ? "high" : "auto"}
@@ -71,8 +72,8 @@ export default function PropertyGrid({ properties, label = "Tous les logements",
               aria-pressed={selected}
               onClick={() => toggleFavorite(property)}
             >
-              <Image className={styles.favoriteIcon} src="/images/heart-icon.png" alt="" width={16} height={16} />
-              <Image className={styles.favoriteIconSelected} src="/images/heart-icon-selected.png" alt="" width={16} height={16} />
+              <Image className={styles.favoriteIcon} src="/images/heart-icon.png" alt="" width={16} height={16} quality={100} />
+              <Image className={styles.favoriteIconSelected} src="/images/heart-icon-selected.png" alt="" width={16} height={16} quality={100} />
             </button>
           </article>
         );

@@ -92,6 +92,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
                 src={images[activeIndex]}
                 alt={`${title} — photo ${activeIndex + 1}`}
                 fill
+                unoptimized
                 quality={100}
                 priority
                 sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 980px) calc(50vw - 30px), 303px"
@@ -168,6 +169,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
                 src={images[activeIndex]}
                 alt={`${title} — photo ${activeIndex + 1}`}
                 fill
+                unoptimized
                 quality={100}
                 sizes="90vw"
               />

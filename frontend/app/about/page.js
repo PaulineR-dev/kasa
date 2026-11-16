@@ -31,6 +31,7 @@ export default function AboutPage() {
         alt="Un chalet chaleureux niché dans la nature"
         width={1115}
         height={458}
+        quality={100}
         sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1160px) calc(100vw - 48px), 1115px"
         priority
         fetchPriority="high"
@@ -55,6 +56,7 @@ export default function AboutPage() {
           alt="Une maison où voyageurs et hôtes peuvent se sentir bien"
           width={494}
           height={458}
+          quality={100}
           sizes="(max-width: 800px) min(100vw - 32px, 494px), 494px"
         />
       </section>

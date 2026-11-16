@@ -22,7 +22,7 @@ export default function MessagesPage() {
       <main className={styles.overlay} role="dialog" aria-modal="true" aria-label="Messagerie">
         <aside className={styles.sidebar}>
           <button className={styles.backButton} type="button" onClick={closeOverlay}>
-            <Image className={styles.backArrow} src="/images/arrow.png" alt="" width={8} height={6} />
+            <Image className={styles.backArrow} src="/images/arrow.png" alt="" width={8} height={6} quality={100} />
             <span>Retour</span>
           </button>
           <h1 className={styles.title}>Messages</h1>
@@ -35,7 +35,7 @@ export default function MessagesPage() {
               <label className={styles.visuallyHidden} htmlFor="message-draft">Envoyer un message</label>
               <textarea id="message-draft" placeholder="Envoyer un message" />
               <button className={styles.sendButton} type="button" aria-label="Envoyer un message">
-                <Image src="/images/arrow.png" alt="" width={8} height={6} />
+                <Image src="/images/arrow.png" alt="" width={8} height={6} quality={100} />
               </button>
             </div>
           </form>

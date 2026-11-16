@@ -74,7 +74,7 @@ export default async function PropertyPage({ params }) {
     <main className={`${styles.page} property-detail-page`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <Link href="/" className={styles.back}>
-        <Image src="/images/arrow.png" alt="" width={8} height={6} />
+        <Image src="/images/arrow.png" alt="" width={8} height={6} quality={100} />
         Retour aux annonces
       </Link>
 
@@ -90,6 +90,7 @@ export default async function PropertyPage({ params }) {
                 alt={`Portrait de ${hostName}`}
                 width={81}
                 height={82}
+                quality={100}
               />
             ) : (
               <div className={styles.avatarFallback} aria-hidden="true">
@@ -98,7 +99,7 @@ export default async function PropertyPage({ params }) {
             )}
             <p className={styles.hostName}>{hostName}</p>
             <div className={styles.rating} aria-label={`Note : ${rating} sur 5`}>
-              <Image src="/images/star.png" alt="" width={18} height={18} />
+              <Image src="/images/star.png" alt="" width={18} height={18} quality={100} />
               <span>{rating}</span>
             </div>
           </div>
@@ -120,7 +121,7 @@ export default async function PropertyPage({ params }) {
       <section className={styles.descriptionCard} aria-labelledby="property-title">
         <h1 id="property-title">{property.title}</h1>
         <p className={styles.location}>
-          <Image src="/images/localisation.png" alt="" width={16} height={16} />
+          <Image src="/images/localisation.png" alt="" width={16} height={16} quality={100} />
           {property.location}
         </p>
         <p className={styles.description}>{property.description}</p>
