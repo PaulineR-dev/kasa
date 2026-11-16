@@ -44,6 +44,7 @@ export default async function PropertyPage({ params }) {
 
   if (!property) notFound();
 
+  // Utiliser les photos de la galerie; si elles manquent, conserver la couverture comme image unique.
   const pictures = property.pictures?.length
     ? property.pictures
     : property.cover
@@ -52,6 +53,7 @@ export default async function PropertyPage({ params }) {
   const rating = Number(property.rating_avg ?? property.rating ?? 0);
   const hostName = property.host?.name || "Hôte Kasa";
   const propertyUrl = `${getSiteUrl()}/properties/${encodeURIComponent(property.slug || property.id)}`;
+  // Ajouter les données de note uniquement lorsqu'une note exploitable existe.
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LodgingBusiness",

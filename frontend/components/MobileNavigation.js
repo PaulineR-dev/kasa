@@ -38,6 +38,7 @@ export default function MobileNavigation({ isLoggedIn, onLogout }) {
           </Link>
         </div>
         <nav className={styles.mobileMenuLinks} aria-label="Navigation mobile">
+          {/* Chaque navigation ferme le panneau pour afficher la destination sans overlay. */}
           <div className={styles.mobileMenuItem}>
             <Link href="/" onClick={() => setMenuOpen(false)}>Accueil</Link>
             <span className={styles.menuSeparator} aria-hidden="true" />

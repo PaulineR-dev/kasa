@@ -11,9 +11,11 @@ import styles from "./messages.module.css";
  */
 export default function MessagesPage() {
   const router = useRouter();
+  // La messagerie s'ouvre comme une superposition : revenir restaure la page précédente.
   const closeOverlay = useCallback(() => router.back(), [router]);
 
   return (
+    // Un clic sur le fond extérieur ferme l'overlay; les clics dans la fenêtre restent actifs.
     <div className={styles.backdrop} role="presentation" onMouseDown={(event) => {
       if (event.target === event.currentTarget) closeOverlay();
     }}>
