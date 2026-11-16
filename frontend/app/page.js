@@ -1,10 +1,13 @@
 import Image from "next/image";
+import { connection } from "next/server";
 import { getProperties } from "@/lib/api/properties";
 import PropertyGrid from "@/components/PropertyGrid";
 import styles from "./page.module.css";
 
 /** Rend la page d'accueil et récupère côté serveur la liste des logements. */
 export default async function Home() {
+  // Le binding Vercel du backend n'existe qu'à l'exécution, donc charge les annonces après connexion.
+  await connection();
   let properties = [];
   let hasError = false;
 

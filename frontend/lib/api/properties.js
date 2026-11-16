@@ -1,6 +1,6 @@
 // Le navigateur passe par les réécritures Next.js; le serveur appelle l'API directement.
 const API_BASE_URL = typeof window === "undefined"
-  ? (process.env.API_URL || "http://localhost:3000").replace(/\/$/, "")
+  ? (process.env.BACKEND_URL || process.env.API_URL || "http://localhost:3000").replace(/\/$/, "")
   : "";
 
 /**

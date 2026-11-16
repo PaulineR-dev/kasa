@@ -12,6 +12,9 @@ const nextConfig = {
     listings: { stale: 300, revalidate: 3600, expire: 86400 },
   },
   async rewrites() {
+    // En production, Vercel Services route /api et /auth directement vers le backend.
+    if (process.env.VERCEL) return [];
+
     const apiOrigin = (process.env.API_URL || "http://localhost:3000").replace(/\/$/, "");
     return [
       {

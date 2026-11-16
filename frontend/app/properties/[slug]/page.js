@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { getPropertyBySlug } from "@/lib/api/properties";
 import PropertyCarousel from "@/components/PropertyCarousel";
 import PropertyAccordion from "./PropertyAccordion";
@@ -14,6 +15,8 @@ export const instant = false;
  * @returns {Promise<Object>} Métadonnées de la page, ou titre non indexable si logement absent.
  */
 export async function generateMetadata({ params }) {
+  // Les données du logement viennent du backend lié à l'exécution sur Vercel.
+  await connection();
   const { slug } = await params;
   const property = await getPropertyBySlug(slug).catch(() => null);
   if (!property) return { title: "Logement introuvable | Kasa", robots: { index: false } };
@@ -33,6 +36,8 @@ export async function generateMetadata({ params }) {
  * @returns {Promise<import('react').ReactElement>} Fiche logement ou page 404.
  */
 export default async function PropertyPage({ params }) {
+  // Les bindings de service Vercel ne sont disponibles qu'à l'exécution, pas au build.
+  await connection();
   const { slug } = await params;
   let property;
 

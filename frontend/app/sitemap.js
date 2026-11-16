@@ -1,5 +1,6 @@
 import { getProperties } from "@/lib/api/properties";
 import { getSiteUrl } from "@/lib/site";
+import { connection } from "next/server";
 
 /**
  * Génère le sitemap XML avec les pages publiques d'accueil et À propos,
@@ -9,6 +10,8 @@ import { getSiteUrl } from "@/lib/site";
  */
 // Next.js transforme cette fonction en fichier XML accessible à /sitemap.xml.
 export default async function sitemap() {
+  // Le binding du backend est fourni à l'exécution par Vercel Services.
+  await connection();
   // Le domaine vient de SITE_URL (avec une valeur locale par défaut).
   const baseUrl = getSiteUrl();
   let properties = [];
