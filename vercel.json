@@ -18,6 +18,25 @@
       ]
     }
   },
+  "images": {
+    "sizes": [16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    "localPatterns": [
+      {
+        "pathname": "^/images/.*$",
+        "search": ""
+      }
+    ],
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "s3-eu-west-1.amazonaws.com",
+        "port": "",
+        "pathname": "^/course\\.oc-static\\.com/projects/front-end-kasa-project/.*$"
+      }
+    ],
+    "qualities": [75, 90, 100],
+    "formats": ["image/webp"]
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",

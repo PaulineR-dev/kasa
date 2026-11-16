@@ -47,7 +47,6 @@ export default function PropertyGrid({ properties, label = "Tous les logements",
                   src={property.cover}
                   alt={property.title}
                   fill
-                  unoptimized
                   quality={100}
                   priority={properties[0]?.id === property.id}
                   fetchPriority={properties[0]?.id === property.id ? "high" : "auto"}
