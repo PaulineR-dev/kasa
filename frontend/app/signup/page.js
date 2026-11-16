@@ -1,12 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import Link from "next/link";
 import { registerUser } from "@/lib/api/auth";
 import styles from "./signup.module.css";
 
 /** Affiche le formulaire d'inscription et gère la création du compte. */
 export default function SignupPage() {
+  const idPrefix = useId().replace(/:/g, "");
+  const fieldIds = {
+    lastName: `${idPrefix}-last-name`,
+    firstName: `${idPrefix}-first-name`,
+    email: `${idPrefix}-email`,
+    password: `${idPrefix}-password`,
+    acceptedTerms: `${idPrefix}-accepted-terms`,
+  };
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
@@ -63,31 +71,31 @@ export default function SignupPage() {
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.field}>
-            <label htmlFor="lastName">Nom</label>
-            <input id="lastName" name="lastName" type="text" autoComplete="family-name" value={lastName} onChange={(event) => setLastName(event.target.value)} required />
+            <label htmlFor={fieldIds.lastName}>Nom</label>
+            <input id={fieldIds.lastName} name="lastName" type="text" autoComplete="family-name" value={lastName} onChange={(event) => setLastName(event.target.value)} required />
           </div>
           <div className={styles.field}>
-            <label htmlFor="firstName">Prénom</label>
-            <input id="firstName" name="firstName" type="text" autoComplete="given-name" value={firstName} onChange={(event) => setFirstName(event.target.value)} required />
+            <label htmlFor={fieldIds.firstName}>Prénom</label>
+            <input id={fieldIds.firstName} name="firstName" type="text" autoComplete="given-name" value={firstName} onChange={(event) => setFirstName(event.target.value)} required />
           </div>
           <div className={styles.field}>
-            <label htmlFor="email">Adresse email</label>
-            <input id="email" name="email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+            <label htmlFor={fieldIds.email}>Adresse email</label>
+            <input id={fieldIds.email} name="email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
           </div>
           <div className={styles.field}>
-            <label htmlFor="password">Mot de passe</label>
-            <input id="password" name="password" type="password" autoComplete="new-password" minLength={6} value={password} onChange={(event) => setPassword(event.target.value)} required />
+            <label htmlFor={fieldIds.password}>Mot de passe</label>
+            <input id={fieldIds.password} name="password" type="password" autoComplete="new-password" minLength={6} value={password} onChange={(event) => setPassword(event.target.value)} required />
           </div>
           <div className={styles.terms}>
             <input
-              id="acceptedTerms"
+              id={fieldIds.acceptedTerms}
               name="acceptedTerms"
               type="checkbox"
               checked={acceptedTerms}
               onChange={(event) => setAcceptedTerms(event.target.checked)}
               required
             />
-            <label htmlFor="acceptedTerms">
+            <label htmlFor={fieldIds.acceptedTerms}>
               J&apos;accepte les <u>conditions générales d&apos;utilisation</u>
             </label>
           </div>
