@@ -132,6 +132,14 @@
   object-fit: contain;
 }
 
+.desktopHeader a:focus-visible,
+.desktopHeader button:focus-visible,
+.mobileNavigation a:focus-visible,
+.mobileNavigation button:focus-visible {
+  outline: 3px solid var(--color-main-red);
+  outline-offset: 4px;
+}
+
 .divider {
   width: 5px;
   height: 1px;

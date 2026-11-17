@@ -59,6 +59,11 @@
   color: var(--color-black);
 }
 
+.propertyCard:focus-within {
+  outline: 3px solid var(--color-main-red);
+  outline-offset: 4px;
+}
+
 .cardLink {
   display: flex;
   min-height: 0;
