@@ -64,8 +64,8 @@ export default function SignupPage() {
       <section className={styles.signupCard} aria-labelledby="signup-title">
         <h1 id="signup-title">Rejoignez la <br className={styles.mobileTitleBreak} />communauté Kasa</h1>
         <p className={styles.intro}>
-          Créez votre compte et commencez à voyager autrement : réservez des<br className={styles.desktopBreak} />
-          logements uniques, découvrez de nouvelles destinations et partagez vos<br className={styles.desktopBreak} />
+          Créez votre compte et commencez à voyager autrement : réservez des<br className={styles.desktopBreak} />{" "}
+          logements uniques, découvrez de nouvelles destinations et partagez vos<br className={styles.desktopBreak} />{" "}
           propres lieux avec d&apos;autres voyageurs.
         </p>
 

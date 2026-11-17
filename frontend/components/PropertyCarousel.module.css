@@ -1,6 +1,6 @@
 .carousel {
   position: relative;
-  width: 622px;
+  width: 616px;
   max-width: 100%;
   height: 358px;
   overflow: hidden;
@@ -12,13 +12,13 @@
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-columns: 303px 303px;
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .mainPhoto {
   position: relative;
-  width: 303px;
+  width: 100%;
   height: 357px;
   overflow: hidden;
   border-radius: 10px;
@@ -38,14 +38,14 @@
 }
 
 .thumbnailArea {
-  width: 303px;
+  width: 100%;
   height: 358px;
   background: var(--background);
 }
 
 .thumbnails {
   display: grid;
-  width: 303px;
+  width: 100%;
   height: 358px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(var(--thumbnail-rows), minmax(0, 1fr));
@@ -361,12 +361,12 @@
 
 @media (max-width: 980px) and (min-width: 601px) {
   .carousel {
-    width: 100%;
+    width: min(616px, 100%);
   }
 
   .mosaic {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
 
   .mainPhoto,
@@ -394,14 +394,20 @@
   }
 
   .mainPhoto {
-    width: 100%;
+    width: min(358px, 100%);
     height: auto;
-    aspect-ratio: 303 / 357;
+    aspect-ratio: 358 / 421.8;
     flex: none;
-    border-radius: 0;
+    margin: 0 auto;
+    border-radius: 10px;
   }
 
-  .thumbnailArea,
+  .thumbnailArea {
+    width: min(358px, 100%);
+    height: auto;
+    margin: 0 auto;
+  }
+
   .thumbnails {
     width: 100%;
     height: auto;

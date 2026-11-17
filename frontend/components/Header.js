@@ -38,7 +38,7 @@ export default function Header() {
         <Link className={styles.brand} href="/" aria-label="Kasa, accueil">
           <Image src="/images/kasa-logo.png" alt="Kasa" width={114} height={41} quality={100} priority />
         </Link>
-        <Link className={`${styles.desktopLink} ${styles.add}`} href={isLoggedIn ? "/properties/new" : "/login"}>+ Ajouter un logement</Link>
+        <Link className={`${styles.desktopLink} ${styles.add}`} href={isLoggedIn ? "/properties/new" : "/login"}>+Ajouter un logement</Link>
         {isLoggedIn ? (
           <button className={`${styles.authButton} ${styles.logoutButton}`} type="button" onClick={logout}>Se déconnecter</button>
         ) : (

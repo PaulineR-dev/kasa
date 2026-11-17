@@ -17,8 +17,10 @@ export default function FavoritesPage() {
       <header className={styles.introduction}>
         <h1>Vos favoris</h1>
         <p>
-          Retrouvez ici tous les logements que vous avez aimés.<br />
-          Prêt à réserver ? Un seul clic et votre prochain séjour est en route.
+          Retrouvez ici tous les logements que vous avez
+          <br className={styles.mobileTextBreak} />{" "}aimés.
+          <br className={styles.desktopTextBreak} />{" "}Prêt à réserver ? Un simple clic et votre
+          <br className={styles.mobileTextBreak} />{" "}prochain séjour est en route.
         </p>
       </header>
       {!isReady ? null : favorites.length ? (

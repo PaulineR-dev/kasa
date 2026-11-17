@@ -29,7 +29,7 @@
 
 .heroRow {
   display: grid;
-  grid-template-columns: 622px 345px;
+  grid-template-columns: 616px 345px;
   align-items: start;
   gap: 10px;
 }
@@ -47,7 +47,8 @@
 
 .hostLabel {
   margin: 0;
-  color: var(--color-black);
+  color: #000000;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 143%;
@@ -92,13 +93,16 @@
   flex: 0 0 50px;
   width: 50px;
   height: 39px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 4px;
+  padding-top: 11.5px;
   border-radius: 10px;
   background: var(--color-light-gray);
-  color: var(--color-black);
-  font-size: 14px;
+  color: #000000;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .rating img {
@@ -106,6 +110,10 @@
   height: 16px;
   flex: 0 0 13px;
   object-fit: contain;
+}
+
+.rating span {
+  line-height: 1;
 }
 
 .contact {
@@ -245,12 +253,12 @@
 
   .back {
     align-self: flex-start;
-    margin: 0 16px 10px;
+    margin: 0 0 10px max(16px, calc((100% - 358px) / 2));
   }
 
   .descriptionCard {
     order: 2;
-    width: calc(100% - 32px);
+    width: min(358px, calc(100% - 32px));
     min-height: 529px;
     margin: 10px 16px 0;
     padding: 24px;
@@ -277,10 +285,6 @@
     width: 81px;
     height: 82px;
     flex-basis: 81px;
-  }
-
-  .rating {
-    font-size: 16px;
   }
 
   .contact {

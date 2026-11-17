@@ -60,7 +60,7 @@ export default function PropertyGrid({ properties, label = "Tous les logements",
                   {isFavoritesPage ? property.location : property.description}
                 </p>
                 <p className={`${styles.propertyPrice} ${isFavoritesPage ? "favorites-property-price" : ""}`}>
-                  <span>{property.price_per_night} €</span>
+                  <span>{property.price_per_night}€</span>
                   <span className={styles.perNight}>par nuit</span>
                 </p>
               </div>

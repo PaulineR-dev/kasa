@@ -18,7 +18,7 @@ export default function AboutPage() {
             Chez Kasa, nous croyons que chaque voyage<br className={styles.mobileBreak} /> mérite un lieu unique où se sentir bien.
           </p>
           <p>
-            Depuis notre création, nous mettons en relation des<br className={styles.mobileBreak} /> voyageurs en quête d&apos;authenticité avec des hôtes,
+            Depuis notre création, nous mettons en relation des<br className={styles.mobileBreak} /> voyageurs en quête d&apos;authenticité avec des hôtes
             <br className={styles.mobileBreak} />
             <br className={styles.desktopBreak} /> passionnés qui aiment partager leur région et leurs bonnes adresses.
           </p>
@@ -46,8 +46,11 @@ export default function AboutPage() {
             <li>Favoriser des échanges humains et chaleureux entre hôtes et voyageurs</li>
           </ol>
           <p className={styles.closing}>
-            Que vous cherchiez un appartement cosy en centre-ville, une maison en bord de mer ou un chalet à la montagne,
-            Kasa vous accompagne pour que chaque séjour devienne un souvenir inoubliable.
+            Que vous cherchiez un appartement cosy
+            <br className={styles.mobileBreak} />{" "}en centre-ville, une maison en bord de
+            <br className={styles.mobileBreak} />{" "}mer ou un chalet à la montagne, Kasa
+            <br className={styles.mobileBreak} />{" "}vous accompagne pour que chaque
+            <br className={styles.mobileBreak} />{" "}séjour devienne un souvenir inoubliable.
           </p>
         </div>
         <Image

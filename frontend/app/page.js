@@ -20,10 +20,17 @@ export default async function Home() {
   return (
     <main className={styles.home}>
       <section className={styles.intro} aria-labelledby="home-title">
-        <h1 id="home-title">Chez vous, partout et ailleurs</h1>
+        <h1 id="home-title">
+          Chez vous,
+          <span className={styles.desktopHeadingContinuation}> partout et ailleurs</span>
+          <span className={styles.mobileHeadingContinuation}>partout et ailleurs</span>
+        </h1>
         <p>
-          Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux,
-          sélectionnés avec soin par nos hôtes.
+          Avec Kasa, vivez des séjours uniques dans des
+          <br className={styles.mobileIntroBreak} />
+          {" "}hébergements chaleureux, sélectionnés avec soin
+          <br className={styles.mobileIntroBreak} />
+          {" "}par nos hôtes.
         </p>
       </section>
 

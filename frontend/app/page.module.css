@@ -16,8 +16,16 @@
   line-height: 1.2;
 }
 
+.mobileHeadingContinuation {
+  display: none;
+}
+
+.mobileIntroBreak {
+  display: none;
+}
+
 .intro p {
-  max-width: 720px;
+  max-width: 100%;
   margin: 8px auto 0;
   color: #000000;
   font-size: 14px;
@@ -156,7 +164,7 @@
   min-height: 0;
   flex: 1 1 176px;
   flex-direction: column;
-  padding: 12px 24px;
+  padding: 16px 24px 24px;
   overflow: hidden;
 }
 
@@ -303,14 +311,27 @@
     line-height: 143%;
   }
 
+  .desktopHeadingContinuation {
+    display: none;
+  }
+
+  .mobileHeadingContinuation {
+    display: block;
+  }
+
   .intro p {
     width: calc(100vw - 48px);
     max-width: none;
   }
 
+  .mobileIntroBreak {
+    display: initial;
+  }
+
   .homeFrame {
-    width: min(342px, 100%, calc(100vh * 2.4345));
+    width: min(342px, 100%);
     height: auto;
+    aspect-ratio: 342 / 458;
     margin-bottom: 51px;
   }
 
