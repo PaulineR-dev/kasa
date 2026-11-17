@@ -1,9 +1,9 @@
-/** Métadonnées SEO de la page de messagerie, exclue de l'indexation. */
+/** Métadonnées SEO de la page de messagerie, autorisée à l'indexation. */
 export const metadata = {
   title: "Messagerie | Kasa",
   description: "Messagerie Kasa pour échanger avec les hôtes.",
   alternates: { canonical: "/messages" },
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
 };
 
 /**
