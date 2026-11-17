@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import MobileNavigation from "@/components/MobileNavigation";
@@ -17,6 +18,7 @@ export function logout() {
 /** Affiche la navigation principale et la synchronise avec l'état de connexion. */
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const syncAuth = () => setIsLoggedIn(Boolean(window.localStorage.getItem("kasa_token")));
@@ -33,8 +35,8 @@ export default function Header() {
   return (
     <header className={styles.siteHeader}>
       <nav className={`${styles.desktopHeader} ${isLoggedIn ? styles.desktopHeaderLoggedIn : styles.desktopHeaderLoggedOut}`} aria-label="Navigation principale">
-        <Link className={`${styles.desktopLink} ${styles.home}`} href="/">Accueil</Link>
-        <Link className={`${styles.desktopLink} ${styles.about}`} href="/about">À propos</Link>
+        <Link className={`${styles.desktopLink} ${styles.home}`} href="/" aria-current={pathname === "/" ? "page" : undefined}>Accueil</Link>
+        <Link className={`${styles.desktopLink} ${styles.about}`} href="/about" aria-current={pathname === "/about" ? "page" : undefined}>À propos</Link>
         <Link className={styles.brand} href="/" aria-label="Kasa, accueil">
           <Image src="/images/kasa-logo.png" alt="Kasa" width={114} height={41} quality={100} priority />
         </Link>

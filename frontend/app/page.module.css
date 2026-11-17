@@ -67,7 +67,7 @@
   color: var(--color-black);
 }
 
-.propertyCard:focus-within {
+.propertyCard:has(:focus-visible) {
   outline: 3px solid var(--color-main-red);
   outline-offset: 4px;
 }

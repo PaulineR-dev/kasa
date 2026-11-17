@@ -27,7 +27,9 @@
 }
 
 .home:hover,
-.about:hover {
+.about:hover,
+.home[aria-current="page"],
+.about[aria-current="page"] {
   color: var(--color-main-red);
   font-weight: 700;
 }
@@ -132,6 +134,18 @@
   object-fit: contain;
 }
 
+.actions > a:first-child {
+  width: 10px;
+  height: 16px;
+  flex: 0 0 10px;
+}
+
+.actions > a:first-child img {
+  width: 10px;
+  height: 9px;
+  flex: 0 0 10px;
+}
+
 .desktopHeader a:focus-visible,
 .desktopHeader button:focus-visible,
 .mobileNavigation a:focus-visible,
@@ -167,6 +181,7 @@
   }
 
   .mobileNavigation {
+    position: relative;
     display: block;
   }
 
@@ -179,14 +194,12 @@
     background: var(--color-white);
   }
 
-  .mobileHeader > a,
-  .mobileMenuTop > a {
+  .mobileHeader > a {
     display: flex;
     align-items: center;
   }
 
-  .mobileHeader > a img,
-  .mobileMenuTop > a img {
+  .mobileHeader > a img {
     display: block;
     width: 46.04px;
     height: 53.36px;
@@ -224,38 +237,28 @@
   }
 
   .mobileMenuOverlay {
-    position: fixed;
-    z-index: 20;
-    top: 0;
-    right: 0;
-    left: 0;
+    position: relative;
     height: 844px;
-    overflow-y: auto;
-    padding: 16px 0 24px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
     background: var(--color-white);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 300ms ease-out, visibility 0s linear 300ms;
+    transition: max-height 300ms ease-out, opacity 300ms ease-out, visibility 0s linear 300ms;
   }
 
   .menuOpen .mobileMenuOverlay {
+    max-height: 844px;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transition: opacity 300ms ease-out, visibility 0s;
-  }
-
-  .mobileMenuTop {
-    display: flex;
-    height: 53.36px;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 26.2px 0 16px;
+    transition: max-height 300ms ease-out, opacity 300ms ease-out, visibility 0s;
   }
 
   .menuClose {
-    position: fixed;
+    position: absolute;
     z-index: 22;
     top: 26.03px;
     right: 26.2px;
@@ -283,7 +286,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    margin: 40px 16px 0;
+    margin: 24px 16px 0;
     opacity: 0;
     transform: translateY(-14px);
     transition: opacity 300ms ease-out, transform 300ms ease-out;
@@ -310,6 +313,11 @@
     font-size: 24px;
     font-weight: 400;
     line-height: 29px;
+  }
+
+  .mobileMenuItem > a[aria-current="page"] {
+    color: var(--color-main-red);
+    font-weight: 700;
   }
 
   .menuSeparator {

@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
 
 /** Affiche le menu mobile et transmet l'action de déconnexion au parent. */
 export default function MobileNavigation({ isLoggedIn, onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div className={`${styles.mobileNavigation} ${menuOpen ? styles.menuOpen : ""}`}>
@@ -32,19 +34,14 @@ export default function MobileNavigation({ isLoggedIn, onLogout }) {
         className={styles.mobileMenuOverlay}
         aria-hidden={!menuOpen}
       >
-        <div className={styles.mobileMenuTop}>
-          <Link href="/" aria-label="Kasa, accueil" onClick={() => setMenuOpen(false)}>
-            <Image src="/images/kasa.png" alt="Kasa" width={46} height={53} quality={100} priority />
-          </Link>
-        </div>
         <nav className={styles.mobileMenuLinks} aria-label="Navigation mobile">
           {/* Chaque navigation ferme le panneau pour afficher la destination sans overlay. */}
           <div className={styles.mobileMenuItem}>
-            <Link href="/" onClick={() => setMenuOpen(false)}>Accueil</Link>
+            <Link href="/" aria-current={pathname === "/" ? "page" : undefined} onClick={() => setMenuOpen(false)}>Accueil</Link>
             <span className={styles.menuSeparator} aria-hidden="true" />
           </div>
           <div className={styles.mobileMenuItem}>
-            <Link href="/about" onClick={() => setMenuOpen(false)}>À propos</Link>
+            <Link href="/about" aria-current={pathname === "/about" ? "page" : undefined} onClick={() => setMenuOpen(false)}>À propos</Link>
             <span className={styles.menuSeparator} aria-hidden="true" />
           </div>
           <div className={styles.mobileMenuItem}>
