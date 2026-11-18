@@ -90,7 +90,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
                 key={activeIndex}
                 className={`${styles.image} ${title === "Charmant Studio Marais" && activeIndex === 0 ? styles.charmantMainImage : ""}`}
                 src={images[activeIndex]}
-                alt={`${title} — photo ${activeIndex + 1}`}
+                alt={`Photo ${title} — image ${activeIndex + 1}`}
                 fill
                 unoptimized
                 quality={100}
@@ -175,7 +175,7 @@ export default function PropertyCarousel({ pictures = [], cover, title }) {
                 key={`lightbox-${activeIndex}`}
                 className={styles.lightboxImage}
                 src={images[activeIndex]}
-                alt={`${title} — photo ${activeIndex + 1}`}
+                alt={`Photo ${title} — image ${activeIndex + 1}`}
                 fill
                 unoptimized
                 quality={100}
