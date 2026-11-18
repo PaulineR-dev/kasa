@@ -47,7 +47,7 @@ export default function PropertyGrid({ properties, label = "Tous les logements",
                 <Image
                   className={styles.propertyImage}
                   src={property.cover}
-                  alt={property.title}
+                  alt={`Photo : ${property.title}`}
                   fill
                   unoptimized
                   quality={100}

@@ -37,7 +37,7 @@ export default async function Home() {
       <Image
         className={styles.homeFrame}
         src="/images/frame.png"
-        alt=""
+        alt="Grande maison moderne en bois avec une grande baie vitrée, entourée d’herbe."
         width={1115}
         height={458}
         quality={100}
