@@ -19,21 +19,23 @@ export default function PropertyGrid({ properties, label = "Tous les logements",
 
   return (
     <section className={`${styles.propertyGrid} ${isFavoritesPage ? "favorites-property-grid" : ""}`} aria-label={label}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            itemListElement: properties.map((property, index) => ({
-              "@type": "ListItem",
-              position: index + 1,
-              url: `${getSiteUrl()}/properties/${encodeURIComponent(property.slug || property.id)}`,
-              name: property.title,
-            })),
-          }).replace(/</g, "\\u003c"),
-        }}
-      />
+      {!isFavoritesPage && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              itemListElement: properties.map((property, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${getSiteUrl()}/properties/${encodeURIComponent(property.slug || property.id)}`,
+                name: property.title,
+              })),
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
+      )}
       {properties.map((property) => {
         const selected = isFavorite(property.id);
         return (
