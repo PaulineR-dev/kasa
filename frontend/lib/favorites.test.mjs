@@ -32,7 +32,7 @@ function memoryStorage(initial = {}) {
 }
 
 // Premier appel : le logement entre dans la liste; second appel sur le même logement : il en sort.
-test("Un logement est ajouté en favori puis retiré lors du clic suivant", () => {
+test("Favoris : un logement est ajouté en favori puis retiré lors du clic suivant", () => {
   const property = { id: "apt-1", title: "Appartement" };
   const added = toggleFavorite([], property);
   // En partant d'une liste vide, ajouter l'appartement doit produire une liste avec cet appartement.
@@ -42,14 +42,14 @@ test("Un logement est ajouté en favori puis retiré lors du clic suivant", () =
 });
 
 // Si le logement est déjà dans la liste, l'action de bascule le supprime.
-test("Un second clic sur un favori le retire de la liste", () => {
+test("Favoris : un second clic sur un favori le retire de la liste", () => {
   const property = { id: "apt-1", title: "Appartement" };
   // La liste contient déjà l'appartement : l'action de bascule doit le supprimer.
   expect(toggleFavorite([property], property)).toEqual([]);
 });
 
 // Enregistrer puis relire la clé confirme que le favori est conservé dans le stockage.
-test("Les favoris persistent dans le stockage pour la session du navigateur", () => {
+test("Favoris : les favoris persistent dans le stockage pour la session du navigateur", () => {
   const storage = memoryStorage();
   const favorites = [{ id: "apt-1", title: "Appartement" }];
   const key = getFavoritesStorageKey(10);
@@ -61,7 +61,7 @@ test("Les favoris persistent dans le stockage pour la session du navigateur", ()
 });
 
 // Les clés isolent les listes par utilisateur; les favoris enregistrés restent lisibles après déconnexion.
-test("Chaque utilisateur a une clé de favoris distincte et la conserve après déconnexion", () => {
+test("Favoris : chaque utilisateur a une clé de favoris distincte et la conserve après déconnexion", () => {
   const storage = memoryStorage();
   const firstUserKey = getFavoritesStorageKey(10);
   const secondUserKey = getFavoritesStorageKey(11);
@@ -80,9 +80,33 @@ test("Chaque utilisateur a une clé de favoris distincte et la conserve après d
 });
 
 // Un JSON invalide donne une liste vide et les entrées sans identifiant sont ignorées.
-test("Un stockage invalide ou des favoris mal formés sont récupérés sans erreur", () => {
+test("Favoris : un stockage invalide ou des favoris mal formés sont récupérés sans erreur", () => {
   // Un contenu qui n'est pas du JSON valide est traité comme une liste vide plutôt que de faire planter la lecture.
   expect(readFavorites(memoryStorage({ [FAVORITES_STORAGE_KEY]: "not-json" }))).toEqual([]);
   // Les entrées sans identifiant sont ignorées; seul l'appartement identifié est conservé.
   expect(normalizeFavorites([null, {}, { id: "apt-1" }])).toEqual([{ id: "apt-1" }]);
+});
+
+// Le clic sur le cœur ajoute le logement à l'état favori, ce qui active son apparence sélectionnée.
+test("Favoris : le cœur devient actif après l'ajout d'un logement", () => {
+  const property = { id: "apt-1", title: "Appartement" };
+  const favorites = toggleFavorite([], property);
+  const heartIsActive = favorites.some((favorite) => String(favorite.id) === String(property.id));
+
+  expect(heartIsActive).toBe(true);
+});
+
+// La page favoris relit dans le même stockage de session le logement ajouté depuis la grille.
+test("Favoris : un logement ajouté apparaît dans Vos favoris pendant la même session", () => {
+  const storage = memoryStorage();
+  const property = { id: "apt-1", title: "Appartement", location: "Paris" };
+  const sessionKey = getFavoritesStorageKey(null);
+
+  const favoritesAfterClick = toggleFavorite(readFavorites(storage, sessionKey), property);
+  writeFavorites(storage, favoritesAfterClick, sessionKey);
+
+  // La page Vos favoris relit la même clé utilisée après le clic sur le cœur.
+  const favoritesPageItems = readFavorites(storage, sessionKey);
+  expect(favoritesPageItems).toEqual([property]);
+  expect(favoritesPageItems.map(({ id }) => id)).toEqual([property.id]);
 });
